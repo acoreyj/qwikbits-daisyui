@@ -5,7 +5,7 @@ import {
   ServiceWorkerRegister,
 } from "@builder.io/qwik-city";
 import { RouterHead } from "./components/router-head/router-head";
-
+import "cal-sans";
 import "./global.css";
 
 export default component$(() => {
