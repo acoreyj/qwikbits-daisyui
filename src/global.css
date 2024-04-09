@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Geologica';
+  src: url('/fonts/geologica/Geologica-VariableFont_CRSV,SHRP,slnt,wght.ttf')
+    format('truetype-variations');
+  font-weight: 100 900; /* range depending on the font */
+  font-stretch: 75% 125%; /* range depending on the font */
+  font-style: oblique -12deg 0deg; /* or italic, oblique */
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrains_Mono/JetBrainsMono-Italic-VariableFont_wght.ttf')
+    format('truetype');
+  font-weight: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrains_Mono/JetBrainsMono-VariableFont_wght.ttf')
+    format('truetype');
+  font-weight: normal;
+  font-display: swap;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Cal Sans', 'ui-sans-serif', 'system-ui', '-apple-system',
+    'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial',
+    'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+}
+/* cal sans font settings */
+body h1 {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+body h2 {
+  font-size: 3rem;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+body h3 {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.015em;
+}
+body h4 {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  letter-spacing: 0.02em;
+}
+body h5 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  letter-spacing: 0.03em;
+}
+body h6 {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  letter-spacing: 0.04em;
+}
+
+/* code block settings */
+body main code,
+body main code span,
+body main code pre,
+body main code kbd,
+body main code samp,
+body main kbd,
+body main samp,
+body main pre {
+  font-family: JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospaceui !important;
+  letter-spacing: 0rem !important;
+  line-height: 1rem !important;
+  font-size: 1rem !important;
+}
+
+.mockup-code pre::before {
+  display: none;
+}
