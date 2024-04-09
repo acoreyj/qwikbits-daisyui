@@ -6,6 +6,7 @@ import {
   useContextProvider,
   useSignal,
   useTask$,
+  useVisibleTask$,
 } from "@builder.io/qwik";
 import Header from "../components/header/header";
 import { routeLoader$ } from "@builder.io/qwik-city";
@@ -21,34 +22,32 @@ export default component$(() => {
       null,
   );
 
-  useTask$(() => {
-    if (isBrowser) {
-      let cookies: Record<string, string> = {};
-      if (!serverTheme.value) {
-        cookies = document.cookie.split(";").reduce(
-          (acc, c) => {
-            const [key, value] = c.trim().split("=");
-            acc[key] = value;
-            return acc;
-          },
-          {} as Record<string, string>,
-        );
-      }
-      const theme = serverTheme.value || cookies.theme;
-      if (theme === "light") {
-        lightMode.value = true;
-      } else if (theme === "dark") {
-        lightMode.value = false;
-      } else {
-        lightMode.value = !window.matchMedia("(prefers-color-scheme: dark)")
-          .matches;
-      }
+  useVisibleTask$(() => {
+    let cookies: Record<string, string> = {};
+    if (!serverTheme.value) {
+      cookies = document.cookie.split(";").reduce(
+        (acc, c) => {
+          const [key, value] = c.trim().split("=");
+          acc[key] = value;
+          return acc;
+        },
+        {} as Record<string, string>,
+      );
+    }
+    const theme = serverTheme.value || cookies.theme;
+    if (theme === "light") {
+      lightMode.value = true;
+    } else if (theme === "dark") {
+      lightMode.value = false;
+    } else {
+      lightMode.value = !window.matchMedia("(prefers-color-scheme: dark)")
+        .matches;
     }
   });
   useTask$((ctx) => {
+    ctx.track(() => lightMode.value);
     if (isBrowser) {
-      ctx.track(() => lightMode.value);
-      document.cookie = `theme=${lightMode.value ? "light" : "dark"};`;
+      document.cookie = `theme=${lightMode.value ? "light" : "dark"};path=/;domain=${location.hostname};`;
     }
   });
   useContextProvider(ThemeContext, lightMode);
@@ -56,7 +55,7 @@ export default component$(() => {
     <main>
       <div
         class={{
-          "bg-base-100 min-h-screen": true,
+          "min-h-screen bg-base-100": true,
           dark: !lightMode.value,
           light: !!lightMode.value,
         }}

@@ -4,17 +4,16 @@ import {
   component$,
   Slot,
   QwikIntrinsicElements,
+  useOnWindow,
+  $
 } from '@builder.io/qwik';
 import { useVisibleTask$ } from '@builder.io/qwik';
-import { isBrowser } from '@builder.io/qwik/build';
 export function use100vh(vh?: number) {
   const height = useSignal<number | undefined>(undefined);
   const numerator = vh ?? 100;
-  if (isBrowser) {
-    window.addEventListener('resize', () => {
+  useOnWindow('resize', $(() => {
       height.value = window.innerHeight * (numerator / 100);
-    });
-  }
+  }))
   useVisibleTask$(async () => {
     height.value = window.innerHeight * (numerator / 100);
   });
