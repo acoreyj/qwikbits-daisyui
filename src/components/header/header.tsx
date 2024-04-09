@@ -55,7 +55,7 @@ export default component$(() => {
             >
               <li role="menuitem" q:slot="end">
                 <DaisyLink
-                  href="https://github.com/genie-design/qwikbits"
+                  href="https://github.com/acoreyj/qwikbits-daisyui"
                   target="_blank"
                   rel="noreferrer"
                   aria-label="GitHub Repo"
